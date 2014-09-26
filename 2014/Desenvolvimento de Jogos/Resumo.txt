@@ -1,1 +1,0 @@
-Mini curso sobre Desenvolvimento de Jogos 2D em Java Desktop.
