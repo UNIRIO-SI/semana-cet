@@ -6,6 +6,7 @@
 - Configuração do Ambiente
 - Operações com Imagem (Posição, Rotação, Opacidade)
 - Animação por Sprites
+- Inputs (Mouse e Teclado)
 
 #### Aula 2
 - Colisão
