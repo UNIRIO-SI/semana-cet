@@ -7,23 +7,23 @@ import br.com.etyllica.EtyllicaFrame;
 import br.com.etyllica.context.Application;
 
 
-public class Project extends EtyllicaFrame {
+public class Aula1 extends EtyllicaFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public Project() {
+	public Aula1() {
 		super(960, 480);
 	}
 	
 	public static void main(String[] args) {
-		Project project = new Project();
+		Aula1 project = new Aula1();
 		project.init();
 	}
 
 	@Override
 	public Application startApplication() {
 		
-		String path = Project.class.getResource("").toString();
+		String path = Aula1.class.getResource("").toString();
 		setPath(path+"../");
 		
 		//return new Exemplo1(w, h);
