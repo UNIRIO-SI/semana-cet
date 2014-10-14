@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import br.com.etyllica.context.Application;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
@@ -13,6 +12,7 @@ import br.com.etyllica.layer.ImageLayer;
 import br.com.tide.input.controller.Controller;
 import br.com.tide.input.controller.EasyController;
 
+import com.marvel.quest.Stage;
 import com.marvel.quest.enemy.Enemy;
 import com.marvel.quest.enemy.StrongMan;
 import com.marvel.quest.hero.Beast;
@@ -20,7 +20,7 @@ import com.marvel.quest.hero.Gambit;
 import com.marvel.quest.hero.Hero;
 import com.marvel.quest.hero.MarvelCharacter;
 
-public class Exemplo8 extends Application {
+public class Exemplo8 extends Stage {
 
 	public Exemplo8(int w, int h) {
 		super(w, h);
@@ -42,14 +42,15 @@ public class Exemplo8 extends Application {
 		background = new ImageLayer("xmen/sor3.png");		
 		
 		if(Exemplo7.BEAST.equals(session.getAsString(Exemplo7.CHAR_PARAM))) {
-			hero = new Beast(40, 200);
+			hero = new Beast(40, 200, this);
 		} else if(Exemplo7.GAMBIT.equals(session.getAsString(Exemplo7.CHAR_PARAM))) {
-			hero = new Gambit(40, 200);
+			hero = new Gambit(40, 200, this);
 		}
-				
+		
 		easyController = new EasyController(hero);
 		
 		characters.add(hero);
+		heroes.add(hero);
 				
 		loadEnemy();
 				
@@ -60,15 +61,18 @@ public class Exemplo8 extends Application {
 	
 	private void loadEnemy() {
 		
-		strongMan = new StrongMan(530, 200);
+		strongMan = new StrongMan(530, 200, this);
 		
 		strongMan.setTarget(hero);
 		
 		characters.add(strongMan);
+		enemies.add(strongMan);
 	}
 	
 	@Override
-	public void timeUpdate(long now){
+	public void timeUpdate(long now) {
+		
+		updateEnemies(now);
 		
 		for(MarvelCharacter player: characters){
 			player.update(now);
@@ -85,7 +89,6 @@ public class Exemplo8 extends Application {
 		for(MarvelCharacter character: characters) {
 			character.draw(g);
 		}
-
 	}
 	
 	@Override

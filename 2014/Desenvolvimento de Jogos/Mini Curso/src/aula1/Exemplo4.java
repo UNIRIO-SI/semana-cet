@@ -39,7 +39,7 @@ public class Exemplo4 extends Application {
 		//Move Image Viewport
 		boo.setXImage(68);
 		
-		boo.setAngle(50); //0~360
+		//boo.setAngle(50); //0~360
 		boo.setOpacity(200); //0~255
 		boo.setScale(2); //0~MAX_DOUBLE
 		
