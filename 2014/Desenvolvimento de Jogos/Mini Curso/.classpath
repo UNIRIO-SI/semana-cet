@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/etyllica-4.3-network.jar"/>
+	<classpathentry kind="lib" path="libs/etyllica-4.3-sound.jar"/>
+	<classpathentry kind="lib" path="libs/etyllica-4.3.jar"/>
+	<classpathentry kind="lib" path="libs/kryonet-2.21-all.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

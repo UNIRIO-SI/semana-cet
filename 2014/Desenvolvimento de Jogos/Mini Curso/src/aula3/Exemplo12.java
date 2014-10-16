@@ -1,54 +1,46 @@
 package aula3;
 
-import br.com.etyllica.context.Application;
-import br.com.etyllica.core.event.GUIEvent;
-import br.com.etyllica.core.event.PointerEvent;
+import java.awt.geom.AffineTransform;
+
+import br.com.etyllica.animation.scripts.HorizontalMovement;
+import br.com.etyllica.cinematics.Camera;
 import br.com.etyllica.core.graphics.Graphic;
-import br.com.etyllica.effects.light.LightSource;
-import br.com.etyllica.effects.light.ShadowLayer;
 import br.com.etyllica.layer.ImageLayer;
 
-public class Exemplo12 extends Application{
-	
-	private ShadowLayer shadow;
-	
-	private LightSource source;
-	private LightSource anotherSource;
-		
-	private ImageLayer background;
+import com.marvel.quest.Stage;
 
+public class Exemplo12 extends Stage {
+
+	private ImageLayer background;
+	
+	private Camera camera;
+	
 	public Exemplo12(int w, int h) {
 		super(w, h);
 	}
 
 	@Override
 	public void load() {
+				
+		background = new ImageLayer("xmen/sor3.png");
 		
-		loading = 10;
+		camera = new Camera(0, 0, w, h);
 		
-		background = new ImageLayer("scene.png");
+		HorizontalMovement cameraMovement = new HorizontalMovement(camera, 10000);
+		cameraMovement.setInterval(0, -500);
+		scene.addAnimation(cameraMovement);
 		
-		shadow = new ShadowLayer(x, y, w, h);
-		
-		source = new LightSource(w/2-100, h/2-100, 200);
-		anotherSource = new LightSource(w/2-100, h/2-100, 200);
-						
 		loading = 100;
 	}
-
+		
 	@Override
 	public void draw(Graphic g) {
 		
+		g.setTransform(AffineTransform.getTranslateInstance(camera.getX(), camera.getY()));
+		
 		background.draw(g);
 		
-		shadow.drawLights(g, source, anotherSource);
-	}
-	
-	public GUIEvent updateMouse(PointerEvent event) {
-		
-		source.setCoordinates(event.getX()-source.getW()/2, event.getY()-source.getH()/2);
-		
-		return null;
+		g.resetTransform();		
 	}
 
 }
